@@ -12,10 +12,15 @@
       "!{projectRoot}/src/test-setup.[jt]s",
       "!{projectRoot}/test-setup.[jt]s"
     ],
-    "sharedGlobals": ["{workspaceRoot}/.github/workflows/ci.yml"]
+    "sharedGlobals": ["{workspaceRoot}/global1", "{workspaceRoot}/global2"],
+    "excludeGlobal1": ["!{workspaceRoot}/global1"]
   },
   "nxCloudAccessToken": "YTM0ODc1OTctYTJkNC00MWQ1LWJiNDItNjk1ZTczYWQ1OGEzfHJlYWQtd3JpdGU=",
   "targetDefaults": {
+    "example": {
+      "cache": true,
+      "inputs":["sharedGlobals", "excludeGlobal1"]
+    },
     "@nx/esbuild:esbuild": {
       "cache": true,
       "dependsOn": ["^build"],
@@ -23,18 +28,5 @@
     }
   },
   "plugins": [
-    {
-      "plugin": "@nx/eslint/plugin",
-      "options": {
-        "targetName": "lint"
-      }
-    },
-    {
-      "plugin": "@nx/jest/plugin",
-      "options": {
-        "targetName": "test"
-      },
-      "exclude": ["e2e/**/*"]
-    }
   ]
 }
